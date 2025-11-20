@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion'
 
 const projects = [
   {
@@ -21,10 +21,11 @@ const projects = [
 export default function Work() {
   const { scrollYProgress } = useScroll()
   const pinkGlow = useTransform(scrollYProgress, [0, 1], ['0px', '80px'])
+  const boxShadow = useMotionTemplate`0 0 ${pinkGlow} rgba(236,72,153,0.2) inset`
 
   return (
     <section id="work" className="relative bg-black py-28">
-      <motion.div style={{ boxShadow: pinkGlow.to(v => `0 0 ${v} rgba(236,72,153,0.2) inset`) }} className="absolute inset-0 pointer-events-none" />
+      <motion.div style={{ boxShadow }} className="absolute inset-0 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-end justify-between mb-10">
           <h2 className="text-3xl md:text-5xl font-black text-pink-100">Selected Work</h2>
